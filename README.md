@@ -37,4 +37,11 @@ keycontrols.py - used as a framework for user keyboard input for servo.
 
 autonomous2.py - starter framework for automous servo controls.
 
-bluetooth_servo_arduino.zip - 
+bluetooth_servo_arduino.zip - arduino bluetooth and servo sketch.
+
+
+To Do:
+
+Decide if the controls from Linux will be via keyboard or joystick
+
+Test attached claw on drone to servo
