@@ -29,6 +29,7 @@ Setup:
 
 5) Connect servo to Arduino https://learn.adafruit.com/adafruit-arduino-lesson-14-servo-motors/the-breadboard-layout-for-sweep
 
+6) Run list_uarts.py in Adafruit examples directory to find your Arduino's bluetooth addess. This value will be declared under the MYBLE variable in the autonomous2.py and the keycontrols.py programs. 
 
 
 Files:
