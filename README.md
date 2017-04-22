@@ -17,9 +17,24 @@ Bluetooth 4.0 USB Module (v2.1 Back-Compatible)
 https://www.adafruit.com/product/1327
 
 
+Setup:
+
+1) Setup Arduino Feather https://learn.adafruit.com/adafruit-feather-32u4-bluefruit-le/assembly
+
+2) Install Feather board support into IDE https://learn.adafruit.com/adafruit-feather-32u4-bluefruit-le/setup
+
+3) Install the Adafruit nRF51 BLE Library https://learn.adafruit.com/adafruit-feather-32u4-bluefruit-le/installing-ble-library
+
+4) Install BlueFruit Python libs on Linux machine https://learn.adafruit.com/bluefruit-le-python-library/installation
+
+5) Connect servo to Arduino https://learn.adafruit.com/adafruit-arduino-lesson-14-servo-motors/the-breadboard-layout-for-sweep
+
+
 
 Files:
 
 keycontrols.py - used as a framework for user keyboard input for servo.
 
 autonomous2.py - starter framework for automous servo controls.
+
+bluetooth_servo_arduino.zip - 
