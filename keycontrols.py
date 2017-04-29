@@ -1,5 +1,7 @@
-# Search for BLE UART devices and list all that are found.
-# Author: Tony DiCola
+# Searches for BLE UART devices and connect to device id MYBLE.
+# Prompts user for inpet to move servo to specified position.
+# Author: Jonny Haldas
+# Connection code taken from: Tony DiCola's list_uarts.py
 import atexit
 import time
 import sys
@@ -14,12 +16,21 @@ MYBLE = 'D0:E9:D8:E3:7E:12'
 # Get the BLE provider for the current platform.
 ble = Adafruit_BluefruitLE.get_provider()
 
-def moveServo(thing):
+
+# Call this method to use user input to move servo to given position
+def moveServo(servo):
 	bool = True
 	while bool ==  True:
-		move = int(input('Input: '))
-		move =str(move)
-		thing.write(move + '\r\n')
+		try:
+			move = int(raw_input('Input between 0-180 degrees, or -1 to stop): '))
+			if move == -1:
+				bool = False
+			elif move <= 180 or move >= 0:
+				move = str(move)
+				servo.write(move + '\r\n')
+		except ValueError:
+			print("Invalid Input")
+	print("Completed.")
 
 # Main function implements the program logic so it can run in a background
 # thread.  Most platforms require the main thread to handle GUI events and other
@@ -61,33 +72,15 @@ def main():
         # their name and ID (MAC address on Linux, GUID on OSX).
         new = found - known_uarts
 
-	# we are looking for this one
-	# Found UART: Adafruit Bluefruit LE [4603dc3e-83cd-47e0-9cc6-49dbee415432]
-
-	
-
 	for device in new:
 		print('Found UART: {0} [{1}]'.format(device.name, device.id))
 		#print(device.id)
 		if str(device.id) == MYBLE:
 			print('Found it! Connecting...')
-		#	device.connect()
+			#device.connect() 	#Needed for Mac but not Linux
 			UART.discover(device)
 			uart = UART(device)
-			#command = input("Please enter commmand: ")	
 			moveServo(uart)
-			#	uart.write('1\r\n')
-			#	time.sleep(2)
-			#	print('2')
-			#	uart.write('2\r\n')
-			#	time.sleep(2)
-			#	print('3')
-			#	uart.write('1\r\n')
-			#	time.sleep(2)
-			#	uart.write('2\r\n')
-			#	time.sleep(2)
-			#	print('here')
-				#break		
 			sys.exit()
 		else:
 			 print('Not Yet')
